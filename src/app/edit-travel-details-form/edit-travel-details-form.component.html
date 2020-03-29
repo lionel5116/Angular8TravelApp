@@ -1,0 +1,120 @@
+<div class="container" style="margin-top: 10px;align:center">
+
+<form>
+ <div class="form-group">
+   <h2>Edit Travel Details</h2>
+  </div>
+
+ <div class="form-group">
+    <label for="">Traveler Name</label>
+    <input [(ngModel)]="travelDetails.TravelerName" type="text" name="TravelerName" class="form-control" id="TravelerNameID" 
+     aria-describedby="TravelerNameHelp" placeholder="Enter Traveler Name">
+</div>
+
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="">Country Code</label>
+        <input [(ngModel)]="travelDetails.CountryCode" type="text" name="CountryCode" class="form-control" id="CountryCodeID" 
+        aria-describedby="CountryCodeHelp" placeholder="Enter Country Code">
+    </div>
+
+   <div class="form-group col-md-6">
+        <label for="">City</label>
+        <input [(ngModel)]="travelDetails.City" type="text" name="City" class="form-control" id="CityID" 
+        aria-describedby="CityHelp" placeholder="Enter City">
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="">Travel Date</label>
+        <input [(ngModel)]="travelDetails.TravelDate" type="text" name="TravelDate" class="form-control" id="TravelDateID" 
+        aria-describedby="TravelDateHelp" placeholder="Enter Travel Date">
+    </div>
+
+   <div class="form-group col-md-6">
+        <label for="">Hotel Name</label>
+        <input [(ngModel)]="travelDetails.HotelName" type="text" name="HotelName" class="form-control" id="HotelNameID" 
+        aria-describedby="HotelNameHelp" placeholder="Enter Hotel Name">
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="form-group col-md-4">
+        <label for="">Airline</label>
+        <input [(ngModel)]="travelDetails.Airline" type="text" name="Airline" class="form-control" id="AirlineID" 
+        aria-describedby="AirlineHelp" placeholder="Enter Airline">
+    </div>
+
+   <div class="form-group col-md-4">
+        <label for="">Ticket Number</label>
+        <input [(ngModel)]="travelDetails.TicketNumber" type="text" name="TicketNumber" class="form-control" id="TicketNumberID" 
+        aria-describedby="TicketNumberHelp" placeholder="Enter Ticket Number">
+    </div>
+
+    <div class="form-group col-md-4">
+        <label for="">Booking Code</label>
+        <input [(ngModel)]="travelDetails.BookingCode" type="text" name="BookingCode" class="form-control" id="BookingCodeID" 
+        aria-describedby="BookingCodeHelp" placeholder="Enter Booking Code">
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="form-group col-md-4">
+        <label for="">Flight Cost</label>
+        <input [(ngModel)]="travelDetails.FlightCost" type="text" name="FlightCost" class="form-control" id="FlightCost" 
+        aria-describedby="FlightCost" placeholder="Flight Cost">
+    </div>
+
+   <div class="form-group col-md-4">
+        <label for="">Hotel Cost</label>
+        <input [(ngModel)]="travelDetails.HotelCost" type="text" name="HotelCost" class="form-control" id="HotelCost" 
+        aria-describedby="HotelCostHelp" placeholder="Enter Hotel Cost">
+    </div>
+
+    <div class="form-group col-md-4">
+        <label for="">Status</label>
+        <input [(ngModel)]="travelDetails.Status" type="text" name="Status" class="form-control" id="Status" 
+        aria-describedby="StatusHelp" placeholder="Status">
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="form-group col-md-4">
+        <label for="">Total Cost Of Trip</label>
+        <input [(ngModel)]="travelDetails.TotalCostOfTrip" type="text" name="TotalCostOfTrip" class="form-control" id="TotalCostOfTripID" 
+        aria-describedby="TotalCostOfTripelp" placeholder="Total Trip Cost">
+    </div>
+
+   <div class="form-group col-md-4">
+        <label for="">Girl Cost</label>
+        <input [(ngModel)]="travelDetails.GirlCost" type="text" name="GirlCost" class="form-control" id="GirlCostID" 
+        aria-describedby="GirlCostHelp" placeholder="Total Chica Cost">
+    </div>
+
+    <div class="form-group col-md-4">
+        <label for="">Trip Rating</label>
+        <input [(ngModel)]="travelDetails.TripRating" type="text" name="TripRating" class="form-control" id="TripRatingID" 
+        aria-describedby="TripRatingHelp" placeholder="Trip Rating">
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="">Notes</label>
+    <textarea  rows="7" [(ngModel)]="travelDetails.Notes" type="text" name="Notes" class="form-control" id="NotesID" 
+     aria-describedby="NotesHelp" ></textarea>
+     <small id="descHelp" class="form-text text-muted">Enter any relatvie trip notes</small>
+</div>
+
+
+<div class="form-row">
+  <button class="btn btn-primary" (click)="returnToMain()">Return to Main</button>
+  <button class="btn btn-primary"  (click)="GoBackToTravelDetailsList()"style="margin-left: 2px;">Back</button>
+  <button class="btn btn-danger"  (click)="editTravelDetailRecord()"style="margin-left: 2px;">Edit Record</button>
+  <button class="btn btn-danger"  (click)="deleteTravelDetailRecord()"style="margin-left: 2px;">Delete Record</button>
+  <!--<button class="btn btn-danger"  (click)="testSomething()"style="margin-left: 2px;">Test Something</button>-->
+ </div>
+
+</form>
+
+</div>
