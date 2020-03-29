@@ -19,7 +19,7 @@ export class TravelDetailsFormComponent implements OnInit {
   loginCredentials: any = []
   loginCredentials$: Observable<Login[]>;
 
-  //declaring variable array with initialization
+
   travelDetails : {
       TravelerName,
       CountryCode,
@@ -81,7 +81,7 @@ export class TravelDetailsFormComponent implements OnInit {
 
   AddRecord()
   {
-    //console.log(this.travelDetails);
+ 
     if(this.travelDetails.TravelerName != "" && 
       this.travelDetails.CountryCode != "" && 
       this.travelDetails.City != "" && 
