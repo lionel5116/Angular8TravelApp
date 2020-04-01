@@ -23,6 +23,8 @@ import {addLoginReducer} from './reducers/login.reducer';
 import { ReactiveFormsModule } from '@angular/forms';
 //for REDUX DEVTOOS
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { ProductsComponent } from './products/products.component';
+import { StocksStatusComponent } from './stocks-status/stocks-status.component';
 
 
 @NgModule({
@@ -32,7 +34,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     HeaderComponent,
     TravelDetailsFormComponent,
     TravelDetailsItemsListComponent,
-    EditTravelDetailsFormComponent
+    EditTravelDetailsFormComponent,
+    ProductsComponent,
+    StocksStatusComponent
   ],
   imports: [
     BrowserModule,

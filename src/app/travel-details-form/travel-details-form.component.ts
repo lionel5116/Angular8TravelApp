@@ -57,10 +57,10 @@ export class TravelDetailsFormComponent implements OnInit {
 
   
   constructor(private router: Router,
-               private mySvcApi: MyApiService,
-               private store: Store<AppState>) {
+              private mySvcApi: MyApiService,
+              private store: Store<AppState>) {
                 this.loginCredentials$ = this.store.select(state => state.login);
-                //now subscribe to the observable
+                // now subscribe to the observable
                 this.loginCredentials$.subscribe(
                   (data) =>
                   {

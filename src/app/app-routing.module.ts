@@ -4,6 +4,8 @@ import {LoginComponent} from './login/login.component';
 import {TravelDetailsFormComponent} from './travel-details-form/travel-details-form.component';
 import {TravelDetailsItemsListComponent} from './travel-details-items-list/travel-details-items-list.component';
 import {EditTravelDetailsFormComponent} from './edit-travel-details-form/edit-travel-details-form.component';
+import {ProductsComponent} from './products/products.component';
+
 
 
 const routes: Routes = [
@@ -12,6 +14,7 @@ const routes: Routes = [
   {path: "login", component: LoginComponent},
   {path: "TravelDetailsItemsList", component: TravelDetailsItemsListComponent},
   {path: "EditTravelDetailForm", component: EditTravelDetailsFormComponent},
+  {path: "Products", component: ProductsComponent},
 ];
 
 @NgModule({
