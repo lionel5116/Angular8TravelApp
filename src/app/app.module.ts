@@ -13,7 +13,6 @@ import { TravelDetailsItemsListComponent } from './travel-details-items-list/tra
 import {HttpClientModule} from '@angular/common/http';
 //make our service a singleton
 import {MyApiService} from './my-api.service';
-import { EditTravelDetailsFormComponent } from './edit-travel-details-form/edit-travel-details-form.component';
 
 //for ngrx
 import { StoreModule } from '@ngrx/store';
@@ -35,7 +34,6 @@ import { TravelPresentationComponent } from './travel-presentation/travel-presen
     HeaderComponent,
     TravelDetailsFormComponent,
     TravelDetailsItemsListComponent,
-    EditTravelDetailsFormComponent,
     ProductsComponent,
     StocksStatusComponent,
     TravelPresentationComponent

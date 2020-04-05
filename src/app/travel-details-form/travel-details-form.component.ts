@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ILogin } from '../ILogin.model';
 import { AppState } from './../app.state';
+import { IfStmt } from '@angular/compiler';
 
 
 @Component({
@@ -18,9 +19,12 @@ export class TravelDetailsFormComponent implements OnInit {
 
   loginCredentials: any = []
   loginCredentials$: Observable<ILogin[]>;
-
+  mode:string;
+  title:string;
+  private payLoad:any;
 
   travelDetails : {
+      id,
       TravelerName,
       CountryCode,
       City,
@@ -37,6 +41,7 @@ export class TravelDetailsFormComponent implements OnInit {
       HotelCost,
       Status
   } = {
+      id:0,
       TravelerName: "",
       CountryCode: "",
       City: "",
@@ -73,15 +78,59 @@ export class TravelDetailsFormComponent implements OnInit {
 
   ngOnInit() {
     console.log("Environment in Travel Details-form.component " + this.loginCredentials[0].environment);
+
+    if(this.isRealValue(this.mySvcApi.oTDetailItem))
+    {
+        this.travelDetails = this.mySvcApi.oTDetailItem;
+        if(this.travelDetails.id == 0
+          || this.travelDetails.id === undefined)
+        {
+          this.title = "Travel Details Entry";
+          this.mode = "Add";
+        }
+        else
+        {
+          this.title = "Edit Travel Details";
+          this.mode = "Edit";
+        }
+    }
+    else
+    {
+      this.title = "Travel Details Entry";
+      this.mode = "Add";
+    }
+
+  }
+
+  isRealValue(obj)
+  {
+   return obj && obj !== 'null' && obj !== 'undefined';
   }
 
   returnToMain()
   {
+    this.clearTravelDetailsPayLoadAndStoreInService();
     this.router.navigate(['/login']);
   }
 
   AddRecord()
   {
+
+    console.log(this.travelDetails);
+    var keys = Object.keys(this.travelDetails).length;
+    console.log("Number of keys " + keys);
+    if(keys > 0)
+    {
+      for (var member in this.travelDetails)  {
+        console.log(member)
+      }
+    }
+    else
+    {
+      alert("Please select/enter all applicable values..");
+      return;
+    }
+
 
     if(this.travelDetails.TravelerName != "" &&
       this.travelDetails.CountryCode != "" &&
@@ -102,9 +151,10 @@ export class TravelDetailsFormComponent implements OnInit {
         console.log(this.loginCredentials[0].environment)
         this.travelDetails.Notes = this.stripOutQuotes(this.travelDetails.Notes);
 
-        //alert(this.loginCredentials[0].environment)
-
         this.mySvcApi.addNewTravelDetailRecord(this.travelDetails,this.loginCredentials[0].environment);
+
+        //clear the travelDetails Object
+        this.clearTravelDetailsPayLoadAndStoreInService();
         this.clearScreen();
       }
       else
@@ -113,13 +163,22 @@ export class TravelDetailsFormComponent implements OnInit {
       }
   }
 
-  testGetHTTP()
+
+  clearTravelDetailsPayLoadAndStoreInService()
   {
-    this.mySvcApi.makeGetCallGitHub();
+    //clear the object if in add mode
+    for (var member in this.travelDetails)  {
+      console.log(member);
+      delete this.travelDetails[member];
+    }
+     //Store the cleared Payload at the service
+     this.mySvcApi.storeTravelDetailObject(this.travelDetails);
   }
+
 
   clearScreen()
   {
+      this.travelDetails.id = 0;
       this.travelDetails.TravelerName = "";
       this.travelDetails.CountryCode = "" ;
       this.travelDetails.City = ""  ;
@@ -135,10 +194,14 @@ export class TravelDetailsFormComponent implements OnInit {
       this.travelDetails.FlightCost = "";
       this.travelDetails.HotelCost = "";
       this.travelDetails.Status = "";
+      this.clearTravelDetailsPayLoadAndStoreInService();
+      this.title = "Travel Details Entry";
+      this.mode = "Add";
   }
 
   createFakeData()
   {
+      this.travelDetails.id = 0;
       this.travelDetails.TravelerName = "Mark Tyson";
       this.travelDetails.CountryCode = "POP" ;
       this.travelDetails.City = "SOUSA"  ;
@@ -167,6 +230,7 @@ export class TravelDetailsFormComponent implements OnInit {
 
   viewTravelList()
   {
+    this.clearTravelDetailsPayLoadAndStoreInService();
     this.router.navigate(['/TravelDetailsItemsList']);
   }
 
@@ -188,6 +252,57 @@ export class TravelDetailsFormComponent implements OnInit {
 
     alert(this.loginCredentials[0].email)
 
+  }
+
+  /*EDIT AREA */
+  editTravelDetailRecord()
+  {
+
+     if(this.travelDetails.id > 0 && this.travelDetails.id !== 'undefined')
+     {
+        if(this.travelDetails.TravelerName != "" &&
+        this.travelDetails.CountryCode != "" &&
+        this.travelDetails.City != "" &&
+        this.travelDetails.TravelDate != "" &&
+        this.travelDetails.HotelName != "" &&
+        this.travelDetails.Airline != "" &&
+        this.travelDetails.TicketNumber != "" &&
+        this.travelDetails.BookingCode != "" &&
+        this.travelDetails.TotalCostOfTrip != "" &&
+        this.travelDetails.GirlCost != "" &&
+        this.travelDetails.TripRating != "" &&
+        this.travelDetails.Notes != "" &&
+        this.travelDetails.FlightCost  != "" &&
+        this.travelDetails.HotelCost != "" &&
+        this.travelDetails.Status != "" )
+        {
+
+          console.log(this.travelDetails);
+          console.log("Environment editTravelDetailRecord Record " + this.loginCredentials[0].environment);
+          this.mySvcApi.EditTravelDetailRecord(this.travelDetails,this.loginCredentials[0].environment,this.travelDetails.id);
+          this.clearScreen();
+        }
+        else
+        {
+          alert("Please select/enter all applicable values..");
+        }
+     }
+
+  }
+
+  deleteTravelDetailRecord()
+  {
+
+    if(this.travelDetails.id > 0 && this.travelDetails.id !== 'undefined')
+    {
+     console.log(this.travelDetails);
+     this.mySvcApi.DeleteTravelDetailRecord(this.travelDetails,this.loginCredentials[0].environment,this.travelDetails.id);
+     this.clearScreen();
+    }
+    else
+    {
+      alert("Cannot delete a record with an invalid record ID..");
+    }
   }
 
 }

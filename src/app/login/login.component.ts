@@ -79,14 +79,5 @@ export class LoginComponent implements OnInit {
 
 
 
-  greetStudent()
-  {
-    this.mySvcApi.sendMessage("Good Morning Lionel");
-  }
-
-  displayMessage()
-  {
-    this.mySvcApi.displayMessage();
-  }
 
 }

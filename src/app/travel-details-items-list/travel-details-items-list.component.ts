@@ -45,7 +45,7 @@ export class TravelDetailsItemsListComponent implements OnInit {
 
   fetchTravelDetailsFromService_Observable()
   {
-    //this.showLoginCredentials(); //dont need this anymore - using REDUX
+
     console.log("Environment in Travel Details items-list.component " + this.loginCredentials[0].environment);
     this.travelDetails2 = this.mySvcApi.getTravelDetailItemsObservable(this.loginCredentials[0].environment);
 
@@ -54,7 +54,7 @@ export class TravelDetailsItemsListComponent implements OnInit {
   fetchTravelItemsFromService() {
     try {
 
-      //this.showLoginCredentials();  //dont need this anymore - using REDUX
+
       this.mySvcApi.getTravelDetailItems(this.loginCredentials[0].environment)
        .subscribe((response : ITravelDetail[])=>{
           this.travelDetails = response;
@@ -77,7 +77,9 @@ export class TravelDetailsItemsListComponent implements OnInit {
 
   public selectTravelItemToEdit(travelItem){
     this.pushSelectedTDItemToObservable(travelItem);
-    this.router.navigate(['/EditTravelDetailForm']);
+    //this.router.navigate(['/EditTravelDetailForm']); //using one form now
+    this.router.navigate(['/TravelDetails']);
+
   }
 
  pushSelectedTDItemToObservable(oTDetailObject: any)
@@ -85,20 +87,6 @@ export class TravelDetailsItemsListComponent implements OnInit {
     this.mySvcApi.storeTravelDetailObject(oTDetailObject);
  }
 
- testOutMessageObservable()
- {
-  this.mySvcApi.teacherMessage$
-   .subscribe(
-     message =>{
-       if(message == 'Good Morning'){
-         alert('Good Morning Teacher');
-       }
-       else{
-         alert("Good Night");
-       }
-     }
-   );
- }
 
   returnToMain()
   {

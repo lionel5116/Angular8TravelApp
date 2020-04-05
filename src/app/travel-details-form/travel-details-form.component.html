@@ -1,17 +1,29 @@
 <div class="container" style="margin-top: 10px;align:center">
 
 <form>
+
+  <div class="form-group">
+    <h2>{{title}}</h2>
+   </div>
   <app-travel-presentation [travelDetails] = "travelDetails"></app-travel-presentation>
 
 
-<div class="form-row">
-  <button class="btn btn-primary" (click)="returnToMain()">Return to Main</button>
-  <button class="btn btn-primary" (click)="AddRecord()" style="margin-left: 2px;">Add Travel Detail Entry</button>
+<div *ngIf="mode=='Add'" class="form-row">
+  <button class="btn btn-primary" (click)="returnToMain()">Login</button>
+  <button class="btn btn-primary" (click)="AddRecord()" style="margin-left: 2px;">Add Record</button>
   <button class="btn btn-info" (click)="createFakeData()" style="margin-left: 2px;">Create Fake Data</button>
   <button class="btn btn-danger"  (click)="clearScreen()"style="margin-left: 2px;">Clear Screen</button>
   <button class="btn btn-warning"  (click)="viewTravelList()"style="margin-left: 2px;">View Travel List</button>
-  <button class="btn btn-info"  (click)="showLoginCredentialsRedux()"style="margin-left: 2px;">Show Login Credentials Redux</button>
+  <!--<button class="btn btn-info"  (click)="showLoginCredentialsRedux()"style="margin-left: 2px;">Show Login Credentials Redux</button>-->
 </div>
+
+<div *ngIf="mode=='Edit'" class="form-row" >
+  <button class="btn btn-primary" (click)="returnToMain()">Login</button>
+  <button class="btn btn-primary"  (click)="viewTravelList()"style="margin-left: 2px;">View Travel List</button>
+  <button class="btn btn-danger"  (click)="editTravelDetailRecord()"style="margin-left: 2px;">Edit Record</button>
+  <button class="btn btn-danger"  (click)="deleteTravelDetailRecord()"style="margin-left: 2px;">Delete Record</button>
+  <button class="btn btn-primary"  (click)="clearScreen()"style="margin-left: 2px;">Clear Record</button>
+ </div>
 
 </form>
 
