@@ -7,7 +7,7 @@ import {ITravelDetail} from '../ITravelDetail';
 //redux for login credentials
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Login } from '../login.model';
+import { ILogin } from '../ILogin.model';
 import { AppState } from './../app.state';
 
 @Component({
@@ -20,7 +20,7 @@ export class EditTravelDetailsFormComponent implements OnInit {
   _travelDetails: any;
   //loginCredentials: any = [];
   loginCredentials: any = []
-  loginCredentials$: Observable<Login[]>;
+  loginCredentials$: Observable<ILogin[]>;
 
   //declaring variable array with initialization
   travelDetails : {
@@ -95,18 +95,18 @@ export class EditTravelDetailsFormComponent implements OnInit {
 
   editTravelDetailRecord()
   {
-    
-   if(this.travelDetails.TravelerName != "" && 
-   this.travelDetails.CountryCode != "" && 
-   this.travelDetails.City != "" && 
-   this.travelDetails.TravelDate != "" && 
-   this.travelDetails.HotelName != "" && 
-   this.travelDetails.Airline != "" && 
-   this.travelDetails.TicketNumber != "" && 
-   this.travelDetails.BookingCode != "" && 
-   this.travelDetails.TotalCostOfTrip != "" && 
-   this.travelDetails.GirlCost != "" && 
-   this.travelDetails.TripRating != "" && 
+
+   if(this.travelDetails.TravelerName != "" &&
+   this.travelDetails.CountryCode != "" &&
+   this.travelDetails.City != "" &&
+   this.travelDetails.TravelDate != "" &&
+   this.travelDetails.HotelName != "" &&
+   this.travelDetails.Airline != "" &&
+   this.travelDetails.TicketNumber != "" &&
+   this.travelDetails.BookingCode != "" &&
+   this.travelDetails.TotalCostOfTrip != "" &&
+   this.travelDetails.GirlCost != "" &&
+   this.travelDetails.TripRating != "" &&
    this.travelDetails.Notes != "" &&
    this.travelDetails.FlightCost  != "" &&
    this.travelDetails.HotelCost != "" &&
@@ -126,11 +126,11 @@ export class EditTravelDetailsFormComponent implements OnInit {
 
   deleteTravelDetailRecord()
   {
-    
+
    if(this.travelDetails.id != "" &&
    this.travelDetails.id != 0)
    {
- 
+
      console.log(this.travelDetails);
      this.mySvcApi.DeleteTravelDetailRecord(this.travelDetails,this.loginCredentials[0].environment,this.travelDetails.id);
      this.clearScreen();
@@ -143,15 +143,15 @@ export class EditTravelDetailsFormComponent implements OnInit {
 
   clearScreen()
   {
-      this.travelDetails.TravelerName = ""; 
+      this.travelDetails.TravelerName = "";
       this.travelDetails.CountryCode = "" ;
       this.travelDetails.City = ""  ;
-      this.travelDetails.TravelDate = "" ; 
+      this.travelDetails.TravelDate = "" ;
       this.travelDetails.HotelName = "" ;
       this.travelDetails.Airline = "" ;
-      this.travelDetails.TicketNumber = "";  
+      this.travelDetails.TicketNumber = "";
       this.travelDetails.BookingCode = "" ;
-      this.travelDetails.TotalCostOfTrip = "" ; 
+      this.travelDetails.TotalCostOfTrip = "" ;
       this.travelDetails.GirlCost = ""  ;
       this.travelDetails.TripRating = "" ;
       this.travelDetails.Notes = "";

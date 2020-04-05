@@ -25,6 +25,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ProductsComponent } from './products/products.component';
 import { StocksStatusComponent } from './stocks-status/stocks-status.component';
+import { TravelPresentationComponent } from './travel-presentation/travel-presentation.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { StocksStatusComponent } from './stocks-status/stocks-status.component';
     TravelDetailsItemsListComponent,
     EditTravelDetailsFormComponent,
     ProductsComponent,
-    StocksStatusComponent
+    StocksStatusComponent,
+    TravelPresentationComponent
   ],
   imports: [
     BrowserModule,

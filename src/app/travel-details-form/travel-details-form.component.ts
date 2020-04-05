@@ -5,7 +5,7 @@ import {MyApiService} from '../my-api.service';
 //redux for login credentials
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Login } from '../login.model';
+import { ILogin } from '../ILogin.model';
 import { AppState } from './../app.state';
 
 
@@ -17,7 +17,7 @@ import { AppState } from './../app.state';
 export class TravelDetailsFormComponent implements OnInit {
 
   loginCredentials: any = []
-  loginCredentials$: Observable<Login[]>;
+  loginCredentials$: Observable<ILogin[]>;
 
 
   travelDetails : {
@@ -55,7 +55,7 @@ export class TravelDetailsFormComponent implements OnInit {
      };
 
 
-  
+
   constructor(private router: Router,
               private mySvcApi: MyApiService,
               private store: Store<AppState>) {
@@ -72,6 +72,7 @@ export class TravelDetailsFormComponent implements OnInit {
 
 
   ngOnInit() {
+    console.log("Environment in Travel Details-form.component " + this.loginCredentials[0].environment);
   }
 
   returnToMain()
@@ -81,29 +82,28 @@ export class TravelDetailsFormComponent implements OnInit {
 
   AddRecord()
   {
- 
-    if(this.travelDetails.TravelerName != "" && 
-      this.travelDetails.CountryCode != "" && 
-      this.travelDetails.City != "" && 
-      this.travelDetails.TravelDate != "" && 
-      this.travelDetails.HotelName != "" && 
-      this.travelDetails.Airline != "" && 
-      this.travelDetails.TicketNumber != "" && 
-      this.travelDetails.BookingCode != "" && 
-      this.travelDetails.TotalCostOfTrip != "" && 
-      this.travelDetails.GirlCost != "" && 
-      this.travelDetails.TripRating != "" && 
+
+    if(this.travelDetails.TravelerName != "" &&
+      this.travelDetails.CountryCode != "" &&
+      this.travelDetails.City != "" &&
+      this.travelDetails.TravelDate != "" &&
+      this.travelDetails.HotelName != "" &&
+      this.travelDetails.Airline != "" &&
+      this.travelDetails.TicketNumber != "" &&
+      this.travelDetails.BookingCode != "" &&
+      this.travelDetails.TotalCostOfTrip != "" &&
+      this.travelDetails.GirlCost != "" &&
+      this.travelDetails.TripRating != "" &&
       this.travelDetails.Notes != "" &&
       this.travelDetails.FlightCost  != "" &&
       this.travelDetails.HotelCost != "" &&
       this.travelDetails.Status != "" )
       {
-        //this.showLoginCredentials();  //grabbing this from REDUX
         console.log(this.loginCredentials[0].environment)
         this.travelDetails.Notes = this.stripOutQuotes(this.travelDetails.Notes);
-        return;
-        
+
         //alert(this.loginCredentials[0].environment)
+
         this.mySvcApi.addNewTravelDetailRecord(this.travelDetails,this.loginCredentials[0].environment);
         this.clearScreen();
       }
@@ -120,15 +120,15 @@ export class TravelDetailsFormComponent implements OnInit {
 
   clearScreen()
   {
-      this.travelDetails.TravelerName = ""; 
+      this.travelDetails.TravelerName = "";
       this.travelDetails.CountryCode = "" ;
       this.travelDetails.City = ""  ;
-      this.travelDetails.TravelDate = "" ; 
+      this.travelDetails.TravelDate = "" ;
       this.travelDetails.HotelName = "" ;
       this.travelDetails.Airline = "" ;
-      this.travelDetails.TicketNumber = "";  
+      this.travelDetails.TicketNumber = "";
       this.travelDetails.BookingCode = "" ;
-      this.travelDetails.TotalCostOfTrip = "" ; 
+      this.travelDetails.TotalCostOfTrip = "" ;
       this.travelDetails.GirlCost = ""  ;
       this.travelDetails.TripRating = "" ;
       this.travelDetails.Notes = "";
@@ -136,30 +136,30 @@ export class TravelDetailsFormComponent implements OnInit {
       this.travelDetails.HotelCost = "";
       this.travelDetails.Status = "";
   }
-    
+
   createFakeData()
   {
-      this.travelDetails.TravelerName = "Mark Tyson"; 
+      this.travelDetails.TravelerName = "Mark Tyson";
       this.travelDetails.CountryCode = "POP" ;
       this.travelDetails.City = "SOUSA"  ;
-      this.travelDetails.TravelDate = "11/6/2019" ; 
+      this.travelDetails.TravelDate = "11/6/2019" ;
       this.travelDetails.HotelName = "Infinity Blue" ;
       this.travelDetails.Airline = "American" ;
-      this.travelDetails.TicketNumber = "9992222XXXX";  
+      this.travelDetails.TicketNumber = "9992222XXXX";
       this.travelDetails.BookingCode = "MARK98" ;
-      this.travelDetails.TotalCostOfTrip = "2500" ; 
+      this.travelDetails.TotalCostOfTrip = "2500" ;
       this.travelDetails.GirlCost = "125"  ;
       this.travelDetails.TripRating = "9+" ;
       this.travelDetails.Notes = "This trip an'nt shit.. may be next time";
       this.travelDetails.FlightCost = "0";
       this.travelDetails.HotelCost = "0";
       this.travelDetails.Status = "0";
-     
+
   }
 
   stripOutQuotes(data)
   {
-   
+
      var newString = data.replace(/'/g, "_");
      //alert(newString);
      return newString;
@@ -178,16 +178,16 @@ export class TravelDetailsFormComponent implements OnInit {
   showLoginCredentialsRedux()
   {
     //grab login credentials from observable
-    
+
     this.loginCredentials$.subscribe(
       (data) =>
       {
         this.loginCredentials = data;
       }
     );
-    
+
     alert(this.loginCredentials[0].email)
-    
+
   }
 
 }

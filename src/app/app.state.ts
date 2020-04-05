@@ -1,5 +1,5 @@
-import { Login } from './login.model';
+import { ILogin } from './ILogin.model';
 
 export interface AppState {
-  readonly login: Login[];
+  readonly login: ILogin[];
 }

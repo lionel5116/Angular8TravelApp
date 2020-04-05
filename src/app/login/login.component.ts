@@ -6,7 +6,7 @@ import {MyApiService} from '../my-api.service';
 //for ngrx
 import { Store } from '@ngrx/store';
 import { AppState } from './../app.state';
-import { Login } from '../login.model';
+import { ILogin } from '../ILogin.model';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 
 @Component({
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
   addLogin(environment, email,password) {
       this.store.dispatch({
         type: 'ADD_LOGIN',
-        payload: <Login> {
+        payload: <ILogin> {
                environment: environment,
                email: email,
                password:password
@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
         }
   }
 
- 
+
 
   greetStudent()
   {

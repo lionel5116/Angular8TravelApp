@@ -6,7 +6,7 @@ import {ITravelDetail} from '../ITravelDetail';
 //redux for login credentials
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Login } from '../login.model';
+import { ILogin } from '../ILogin.model';
 import { AppState } from './../app.state';
 
 @Component({
@@ -16,13 +16,13 @@ import { AppState } from './../app.state';
 })
 export class TravelDetailsItemsListComponent implements OnInit {
 
-  
+
   travelDetails: ITravelDetail[] = [];
   selectedTravelItem;
   travelDetails2: any;
 
   loginCredentials: any = []
-  loginCredentials$: Observable<Login[]>;
+  loginCredentials$: Observable<ILogin[]>;
 
    constructor(private router: Router,
     private mySvcApi: MyApiService,
@@ -38,7 +38,7 @@ export class TravelDetailsItemsListComponent implements OnInit {
           }
 
   ngOnInit() {
-    
+
     this.fetchTravelDetailsFromService_Observable();
   }
 
@@ -50,7 +50,7 @@ export class TravelDetailsItemsListComponent implements OnInit {
     this.travelDetails2 = this.mySvcApi.getTravelDetailItemsObservable(this.loginCredentials[0].environment);
 
   }
-  
+
   fetchTravelItemsFromService() {
     try {
 
@@ -64,7 +64,7 @@ export class TravelDetailsItemsListComponent implements OnInit {
          alert("Error fetching detail items" + error.message)
         }
        );
-     
+
     } catch (e) {
       console.log(e);
     }
@@ -72,7 +72,7 @@ export class TravelDetailsItemsListComponent implements OnInit {
 
   public selectTravelItem(travelItem){
     this.selectedTravelItem = travelItem;
-    
+
   }
 
   public selectTravelItemToEdit(travelItem){

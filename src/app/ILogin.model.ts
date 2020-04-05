@@ -1,6 +1,5 @@
-export interface Login {
+export interface ILogin {
     environment: string;
     email: string;
     password: string;
   }
-  
