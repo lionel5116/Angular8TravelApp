@@ -14,7 +14,6 @@
   <button class="btn btn-info" (click)="createFakeData()" style="margin-left: 2px;">Create Fake Data</button>
   <button class="btn btn-danger"  (click)="clearScreen()"style="margin-left: 2px;">Clear Screen</button>
   <button class="btn btn-warning"  (click)="viewTravelList()"style="margin-left: 2px;">View Travel List</button>
-  <!--<button class="btn btn-info"  (click)="showLoginCredentialsRedux()"style="margin-left: 2px;">Show Login Credentials Redux</button>-->
 </div>
 
 <div *ngIf="mode=='Edit'" class="form-row" >
@@ -23,6 +22,30 @@
   <button class="btn btn-danger"  (click)="editTravelDetailRecord()"style="margin-left: 2px;">Edit Record</button>
   <button class="btn btn-danger"  (click)="deleteTravelDetailRecord()"style="margin-left: 2px;">Delete Record</button>
   <button class="btn btn-primary"  (click)="clearScreen()"style="margin-left: 2px;">Clear Record</button>
+ </div>
+
+
+
+ <div class="form-row" style="margin-top: 10px;" *ngFor="let image of images">
+  <div class="form-group col-md-12">
+    <a
+        href="#"
+        class="list-group-item clearfix"
+        >
+        <div class="pull-left">
+          <h4 class="list-group-item-heading">{{image.name}}</h4>
+          <p class="list-group-item-text">{{image.description}}</p>
+        </div>
+
+        <span class="pull-right">
+        <img
+          [src] = "image.imagePath"
+          alt="{{image.name}}"
+          class="img-responsive"
+          style="max-height: 200px;">
+        </span>
+    </a>
+  </div>
  </div>
 
 </form>
