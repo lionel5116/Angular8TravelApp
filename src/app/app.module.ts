@@ -25,6 +25,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ProductsComponent } from './products/products.component';
 import { StocksStatusComponent } from './stocks-status/stocks-status.component';
 import { TravelPresentationComponent } from './travel-presentation/travel-presentation.component';
+import { GallerypageComponent } from './gallerypage/gallerypage.component';
+import { ImagecontentComponent } from './imagecontent/imagecontent.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { TravelPresentationComponent } from './travel-presentation/travel-presen
     TravelDetailsItemsListComponent,
     ProductsComponent,
     StocksStatusComponent,
-    TravelPresentationComponent
+    TravelPresentationComponent,
+    GallerypageComponent,
+    ImagecontentComponent
   ],
   imports: [
     BrowserModule,
