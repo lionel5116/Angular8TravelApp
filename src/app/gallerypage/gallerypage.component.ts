@@ -25,7 +25,7 @@ export class GallerypageComponent implements OnInit {
     this.images = [];
     this.images.push(new Images('Caroline Yenny', yennyDescrip,' assets/images/CarolineYenny.JPG'));
 
-    this.images.push(new Images('Vanessa Costa Rica','Venezualen - Met In Costa Rica 2019','/assets/images/VanessaCostaRica.jpg'));
+    this.images.push(new Images('Vanessa Costa Rica','Venezualen - Met In Costa Rica 2019','assets/images/VanessaCostaRica.jpg'));
 
     this.images.push(new Images('Juliette','Met In Cartejena - Julliets friend - OTC','assets/images/Juliette.JPG'));
 
