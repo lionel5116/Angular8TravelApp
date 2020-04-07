@@ -1,8 +1,12 @@
-<div class="row">
-  <div class="col-xs-12">
-   <app-imagecontent *ngFor="let imgElement of images"
-   [image]="imgElement">
-   </app-imagecontent>
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-xs-12" style="padding-left: 30px; padding-bottom: 10px;">
+     <app-imagecontent *ngFor="let imgElement of images"
+     [image]="imgElement">
+     </app-imagecontent>
+    </div>
   </div>
+
 </div>
 
