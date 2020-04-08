@@ -17,6 +17,7 @@ import {MyApiService} from './my-api.service';
 //for ngrx
 import { StoreModule } from '@ngrx/store';
 import {addLoginReducer} from './reducers/login.reducer';
+import {addTravelReducer} from './reducers/travel.reducer';
 
 //for reactive forms
 import { ReactiveFormsModule } from '@angular/forms';
@@ -47,7 +48,7 @@ import { ImagecontentComponent } from './imagecontent/imagecontent.component';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    StoreModule.forRoot({ login:addLoginReducer}),
+    StoreModule.forRoot({ login:addLoginReducer,travel:addTravelReducer}),
     StoreDevtoolsModule.instrument({
       maxAge: 10
     }), //for ngrx

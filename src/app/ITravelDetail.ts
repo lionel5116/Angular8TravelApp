@@ -12,4 +12,7 @@ export interface ITravelDetail{
       GirlCost: string
       TripRating: string
       Notes: string
+      FlightCost: string
+      HotelCost: string
+      Status: string
 }

@@ -24,10 +24,14 @@ export class TravelDetailsItemsListComponent implements OnInit {
   loginCredentials: any = []
   loginCredentials$: Observable<ILogin[]>;
 
+  _travelDetailState: any = [];
+  travelDetailState$: Observable<ITravelDetail[]>;
+
    constructor(private router: Router,
     private mySvcApi: MyApiService,
             private store: Store<AppState>) {
               this.loginCredentials$ = this.store.select(state => state.login);
+              this.travelDetailState$ = this.store.select(state => state.travel);
               //now subscribe to the observable
               this.loginCredentials$.subscribe(
                 (data) =>
@@ -35,10 +39,17 @@ export class TravelDetailsItemsListComponent implements OnInit {
                   this.loginCredentials = data;
                 }
               );
+              this.travelDetailState$.subscribe(
+                (data) =>
+                {
+                  this._travelDetailState = data;
+                }
+              );
           }
 
   ngOnInit() {
 
+    console.log(this._travelDetailState[0].TravelerName + '  ' + (this._travelDetailState[0].HotelName));
     this.fetchTravelDetailsFromService_Observable();
   }
 

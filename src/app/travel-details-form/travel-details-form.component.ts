@@ -6,6 +6,7 @@ import {MyApiService} from '../my-api.service';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ILogin } from '../ILogin.model';
+import {ITravelDetail} from '../ITravelDetail';
 import { AppState } from './../app.state';
 import { IfStmt } from '@angular/compiler';
 import {Images} from '../shared/Images.model';
@@ -103,6 +104,30 @@ export class TravelDetailsFormComponent implements OnInit {
       this.mode = "Add";
     }
 
+
+  }
+
+  addTravelDetailState(travelDetails:ITravelDetail) {
+    this.store.dispatch({
+      type: 'ADD_TRAVEL',
+      payload: <ITravelDetail> {
+        TravelerName: travelDetails.TravelerName,
+        CountryCode: travelDetails.CountryCode,
+        City: travelDetails.City,
+        TravelDate: travelDetails.TravelDate,
+        HotelName : travelDetails.HotelName,
+        Airline: travelDetails.Airline,
+        TicketNumber: travelDetails.TicketNumber,
+        BookingCode: travelDetails.BookingCode,
+        TotalCostOfTrip: travelDetails.TotalCostOfTrip,
+        GirlCost: travelDetails.GirlCost,
+        TripRating: travelDetails.TripRating,
+        Notes:travelDetails.Notes,
+        FlightCost: travelDetails.FlightCost,
+        HotelCost: travelDetails.HotelCost,
+        Status: travelDetails.Status
+        }
+    });
 
   }
 
