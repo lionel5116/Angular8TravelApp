@@ -49,7 +49,14 @@ export class TravelDetailsItemsListComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log(this._travelDetailState[0].TravelerName + '  ' + (this._travelDetailState[0].HotelName));
+    //THIS CODE WILL CHANGE (YOU NEED TO GRAB THE LAST STATE THAT WAS ASSIGNED - IT MAY BE this._travelDetailState[2].ElementName) ****
+    console.log(this._travelDetailState.length);
+    if(this._travelDetailState.length > 0)
+    {
+      console.log(this._travelDetailState[this._travelDetailState.length-1].TravelerName + '  ' + (this._travelDetailState[this._travelDetailState.length-1].HotelName));
+    }
+
+
     this.fetchTravelDetailsFromService_Observable();
   }
 
@@ -57,8 +64,8 @@ export class TravelDetailsItemsListComponent implements OnInit {
   fetchTravelDetailsFromService_Observable()
   {
 
-    console.log("Environment in Travel Details items-list.component " + this.loginCredentials[0].environment);
-    this.travelDetails2 = this.mySvcApi.getTravelDetailItemsObservable(this.loginCredentials[0].environment);
+    console.log("Environment in Travel Details items-list.component " + this.loginCredentials[this.loginCredentials.length-1].environment);
+    this.travelDetails2 = this.mySvcApi.getTravelDetailItemsObservable(this.loginCredentials[this.loginCredentials.length-1].environment);
 
   }
 
