@@ -15,6 +15,7 @@
   <button class="btn btn-danger"  (click)="clearScreen()"style="margin-left: 2px;">Clear Screen</button>
   <button class="btn btn-warning"  (click)="viewTravelList()"style="margin-left: 2px;">View Travel List</button>
   <button class="btn btn-info"  (click)="addTravelDetailState(travelDetails)"style="margin-left: 2px;">Store State</button>
+  <app-reusable-button (onClick)="logSomeInformation(travelDetails.TravelerName)" [label]="btnlabel"></app-reusable-button>
 </div>
 
 <div *ngIf="mode=='Edit'" class="form-row" >

@@ -28,6 +28,7 @@ import { StocksStatusComponent } from './stocks-status/stocks-status.component';
 import { TravelPresentationComponent } from './travel-presentation/travel-presentation.component';
 import { GallerypageComponent } from './gallerypage/gallerypage.component';
 import { ImagecontentComponent } from './imagecontent/imagecontent.component';
+import { ReusableButtonComponent } from './shared/reusable-button/reusable-button.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { ImagecontentComponent } from './imagecontent/imagecontent.component';
     StocksStatusComponent,
     TravelPresentationComponent,
     GallerypageComponent,
-    ImagecontentComponent
+    ImagecontentComponent,
+    ReusableButtonComponent
   ],
   imports: [
     BrowserModule,

@@ -25,6 +25,8 @@ export class TravelDetailsFormComponent implements OnInit {
   title:string;
   private payLoad:any;
 
+  btnlabel = "Log Info";
+
   images:Images[];
 
   travelDetails : {
@@ -332,6 +334,11 @@ export class TravelDetailsFormComponent implements OnInit {
     {
       alert("Cannot delete a record with an invalid record ID..");
     }
+  }
+
+  logSomeInformation(event)
+  {
+    console.log('Traveler',event);
   }
 
 }
