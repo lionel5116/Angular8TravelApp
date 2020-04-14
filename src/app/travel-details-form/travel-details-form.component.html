@@ -7,7 +7,6 @@
    </div>
   <app-travel-presentation [travelDetails] = "travelDetails"></app-travel-presentation>
 
-
 <div *ngIf="mode=='Add'" class="form-row">
   <button class="btn btn-primary" (click)="returnToMain()">Login</button>
   <button class="btn btn-primary" (click)="AddRecord()" style="margin-left: 2px;">Add Record</button>
@@ -25,10 +24,6 @@
   <button class="btn btn-danger"  (click)="deleteTravelDetailRecord()"style="margin-left: 2px;">Delete Record</button>
   <button class="btn btn-primary"  (click)="clearScreen()"style="margin-left: 2px;">Clear Record</button>
  </div>
-
-
-
-
 </form>
 
 </div>

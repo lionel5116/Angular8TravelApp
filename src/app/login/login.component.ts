@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import { ValueTransformer } from '@angular/compiler/src/util';
 import {MyApiService} from '../my-api.service';
 
+
 //for ngrx
 import { Store } from '@ngrx/store';
 import { AppState } from './../app.state';
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router,
             private mySvcApi: MyApiService,
             private store: Store<AppState>,
-            private fb: FormBuilder) {  this.createForm();}
+            private fb: FormBuilder,
+            ) {  this.createForm();}
 
   createForm() {
       this.angForm = this.fb.group({

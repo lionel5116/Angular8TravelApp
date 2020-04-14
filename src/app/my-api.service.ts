@@ -5,6 +5,7 @@ import { stringify } from 'querystring';
 import {ITravelDetail} from './ITravelDetail';
 import {TravelDetails} from './TravelDetails';
 import {Subject, Observable} from 'rxjs';
+import {Login} from './shared/Login.model';
 
 
 
@@ -37,7 +38,7 @@ export class MyApiService {
   finalURL;
   editTravelDetailURL;
 
-
+  loginObject:Login;
 
   public login : {
           environment,
@@ -216,6 +217,18 @@ addNewTravelDetailRecord(travelDetailData:any,environment){
     getLoginCredentials()
     {
       return this.login;
+    }
+
+    getLoginCredentialsStronglyTyped(environment:string,
+                                     email:string,
+                                     password:string)
+    {
+      let loginObject = {
+                        environment:environment,
+                        email:email,
+                        password:password}
+
+      return loginObject;
     }
 
 
