@@ -29,6 +29,7 @@ import { TravelPresentationComponent } from './travel-presentation/travel-presen
 import { GallerypageComponent } from './gallerypage/gallerypage.component';
 import { ImagecontentComponent } from './imagecontent/imagecontent.component';
 import { ReusableButtonComponent } from './shared/reusable-button/reusable-button.component';
+import { MigrateDataComponent } from './migrate-data/migrate-data.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { ReusableButtonComponent } from './shared/reusable-button/reusable-butto
     TravelPresentationComponent,
     GallerypageComponent,
     ImagecontentComponent,
-    ReusableButtonComponent
+    ReusableButtonComponent,
+    MigrateDataComponent
   ],
   imports: [
     BrowserModule,

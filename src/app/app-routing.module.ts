@@ -5,8 +5,7 @@ import {TravelDetailsFormComponent} from './travel-details-form/travel-details-f
 import {TravelDetailsItemsListComponent} from './travel-details-items-list/travel-details-items-list.component';
 import {ProductsComponent} from './products/products.component';
 import {GallerypageComponent} from './gallerypage/gallerypage.component';
-
-
+import {MigrateDataComponent} from './migrate-data/migrate-data.component';
 
 const routes: Routes = [
   {path:  "", pathMatch:  "full",redirectTo:  "login"},
@@ -14,6 +13,7 @@ const routes: Routes = [
   {path: "login", component: LoginComponent},
   {path: "TravelDetailsItemsList", component: TravelDetailsItemsListComponent},
   {path: "Products", component: ProductsComponent},
+  {path: "Migrate", component: MigrateDataComponent},
   {path: "Gallery", component: GallerypageComponent},
 ];
 

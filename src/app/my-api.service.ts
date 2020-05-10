@@ -1,12 +1,16 @@
-import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
+import { Injectable, OnDestroy } from '@angular/core';
 import { stringify } from 'querystring';
 import {ITravelDetail} from './ITravelDetail';
 import {TravelDetails} from './TravelDetails';
 import {Subject, Observable} from 'rxjs';
 import {Login} from './shared/Login.model';
 
+/*HTTP */
+import {map,tap, take, exhaustMap} from 'rxjs/operators';
+import { HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
+
+import {HCADRecord} from './shared/HCADRecord';
 
 
 const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
@@ -15,15 +19,12 @@ const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8
 @Injectable({
   providedIn: 'root'
 })
-export class MyApiService {
+export class MyApiService implements OnDestroy {
 
 
  private _ObtravelDetailDataItems$ = new Subject<any>();
-
-
  private _travelDetailSource = new Subject<any>();
  travelDetailObject$ = this._travelDetailSource.asObservable();
-
  public oTDetailItem: any;
 
    private TravelDetailsWEBAPIURL = "http://localhost:52516/api/TravelDetail";
@@ -45,9 +46,17 @@ export class MyApiService {
           email,
           password } = {environment: "", email: "", password: ""};
 
-  constructor(private http: HttpClient) {
 
-   }
+  private hcadRecords:HCADRecord[] = [];
+  private _hcadRecord$ = new Subject<HCADRecord[]>();
+
+
+  constructor(private http: HttpClient) {}
+
+  ngOnDestroy()
+  {
+    this._hcadRecord$.unsubscribe();
+  }
 
  storeTravelDetailObject(oTravelDetail: any){
 
@@ -230,6 +239,37 @@ addNewTravelDetailRecord(travelDetailData:any,environment){
 
       return loginObject;
     }
+
+    /*THIS AREA BELOW IS WHERE WE ARE GOING TO PLACE OUR NEW FIREBASE FETCHING ETC..  */
+  getHCADSampleRecords()
+  {
+     //private _hcadRecord$ = new Subject<HCADRecord[]>();
+
+     return this.http.get<HCADRecord[]>('http://98.194.63.199/MobileReviewWEBAPI/api/MobileReview/getHCADSampleRecords')
+    .subscribe(hcadRecs =>
+      {
+          //console.log(hcadRecs);
+          this._hcadRecord$.next(hcadRecs);
+      }
+    )
+  }
+
+  fetchHCADRecords()
+  {
+    this.getHCADSampleRecords();
+    return this._hcadRecord$.asObservable();
+  }
+
+  writeHCADRecordsToFireBase(hcadRecords:HCADRecord[])
+  {
+    //console.log(hcadRecords[0]);
+
+    this.http.put('https://levelmoneydb.firebaseio.com/hcadrecs.json',hcadRecords)
+    .subscribe(response => {
+       console.log(response);
+     });
+
+  }
 
 
 }
