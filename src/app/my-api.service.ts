@@ -245,7 +245,8 @@ addNewTravelDetailRecord(travelDetailData:any,environment){
   {
      //private _hcadRecord$ = new Subject<HCADRecord[]>();
 
-     return this.http.get<HCADRecord[]>('http://98.194.63.199/MobileReviewWEBAPI/api/MobileReview/getHCADSampleRecords')
+     //return this.http.get<HCADRecord[]>('http://98.194.63.199/MobileReviewWEBAPI/api/MobileReview/getHCADSampleRecords')
+     return this.http.get<HCADRecord[]>('https://traveltrackingdb.firebaseio.com/hcadrecs.json')
     .subscribe(hcadRecs =>
       {
           //console.log(hcadRecs);
@@ -264,7 +265,8 @@ addNewTravelDetailRecord(travelDetailData:any,environment){
   {
     //console.log(hcadRecords[0]);
 
-    this.http.put('https://levelmoneydb.firebaseio.com/hcadrecs.json',hcadRecords)
+    //this.http.put('https://levelmoneydb.firebaseio.com/hcadrecs.json',hcadRecords)
+    this.http.put('https://traveltrackingdb.firebaseio.com/hcadrecs.json',hcadRecords)
     .subscribe(response => {
        console.log(response);
      });
