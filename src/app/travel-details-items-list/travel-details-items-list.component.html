@@ -1,6 +1,6 @@
 <div class="container" style="margin-top: 10px;align:center">
  <form>
-    
+
     <div class="form-group">
      <h2>Travel Details List</h2>
     </div>
@@ -12,7 +12,7 @@
         <h4 class="card-title">{{selectedTravelItem.CountryCode}}</h4>
         <p class="card-text">
           {{selectedTravelItem.Notes}}
-        </p>    
+        </p>
       </div>
 
     </div>
@@ -33,7 +33,7 @@
     </thead>
     <tbody>
       <!--<tr *ngFor="let dtRec of travelDetails">-->
-       <tr *ngFor="let dtRec of travelDetails2 | async">
+       <tr *ngFor="let dtRec of travelDetails2$ | async">
         <td>{{ dtRec.TravelerName }}</td>
          <td> {{dtRec.TravelDate }}</td>
         <td> {{ dtRec.CountryCode }}</td>
@@ -41,7 +41,7 @@
         <td> {{ dtRec.TotalCostOfTrip }}</td>
         <td> {{ dtRec.GirlCost }}</td>
         <td> {{ dtRec.TripRating }}</td>
-    
+
         <td>
          <button class="btn btn-primary" (click)="selectTravelItem(dtRec)" style="width: 50px;;">DT</button>
         </td>
@@ -59,7 +59,7 @@
      <button class="btn btn-primary" (click)="returnToAddNewTravelDetailItems()" style="margin-left: 2px;">Return to Add New Record</button>
     </div>
 
-    
+
 
 
  </form>

@@ -169,50 +169,23 @@ addNewTravelDetailRecord(travelDetailData:any,environment){
 
 
 
-    fetchTravelDetailItems()
-    {
-      this.http.get('http://localhost:52516/api/TravelDetail/fetcheTravelListItems/')
-      .subscribe((response)=> console.log(response));
-    }
-
-    getTravelDetailItems(environment)
-    {
-      //alert(environment);
-      if(environment == "Production" )
-      {
-
-        return this.http.get('https://genericwebservice.herokuapp.com/TravelDetails');
-      }
-      else if(environment == "Local" )
-      {
-
-        return this.http.get('http://localhost:52516/api/TravelDetail/fetcheTravelListItems/');
-
-      }
-    }
 
     callTravelDetailsViaObservable(environment)
     {
-      //alert(environment);
+
       if(environment == "Production" )
       {
 
-        return this.http.get('https://genericwebservice.herokuapp.com/TravelDetails')
-                            .subscribe(data => this._ObtravelDetailDataItems$.next(data));
+        return this.http.get<TravelDetails[]>('https://genericwebservice.herokuapp.com/TravelDetails');
+
       }
       else if(environment == "Local" )
       {
 
-        return this.http.get('http://localhost:52516/api/TravelDetail/fetcheTravelListItems/')
-                            .subscribe(data => this._ObtravelDetailDataItems$.next(data));
+        return this.http.get<TravelDetails[]>('http://localhost:52516/api/TravelDetail/fetcheTravelListItems/');
 
       }
-    }
 
-    getTravelDetailItemsObservable(environment):Observable<TravelDetails[]>
-    {
-      this.callTravelDetailsViaObservable(environment);
-       return this._ObtravelDetailDataItems$.asObservable();
     }
 
     /*deprecated */
@@ -241,31 +214,28 @@ addNewTravelDetailRecord(travelDetailData:any,environment){
     }
 
     /*THIS AREA BELOW IS WHERE WE ARE GOING TO PLACE OUR NEW FIREBASE FETCHING ETC..  */
-  getHCADSampleRecords()
-  {
-     //private _hcadRecord$ = new Subject<HCADRecord[]>();
 
-     //return this.http.get<HCADRecord[]>('http://98.194.63.199/MobileReviewWEBAPI/api/MobileReview/getHCADSampleRecords')
-     return this.http.get<HCADRecord[]>('https://traveltrackingdb.firebaseio.com/hcadrecs.json')
-    .subscribe(hcadRecs =>
-      {
-          //console.log(hcadRecs);
-          this._hcadRecord$.next(hcadRecs);
-      }
-    )
-  }
-
-  fetchHCADRecords()
+  fetchHCADRecordsRefactored(environment:string)
   {
-    this.getHCADSampleRecords();
-    return this._hcadRecord$.asObservable();
+    //THIS IS THE PROPER WAY, BECAUSE REMEMBER, HTTP OBJECTS "ARE" OBSERVABLES ****
+    ///return this.http.get<HCADRecord[]>('http://98.194.63.199/MobileReviewWEBAPI/api/MobileReview/getHCADSampleRecords')
+
+    if(environment =='Production')
+    {
+      return this.http.get<HCADRecord[]>('https://traveltrackingdb.firebaseio.com/hcadrecs.json');
+    }
+    else
+    {
+      alert("Not a production environment.. cannot fetch");
+      return null;
+    }
+
   }
 
   writeHCADRecordsToFireBase(hcadRecords:HCADRecord[])
   {
     //console.log(hcadRecords[0]);
 
-    //this.http.put('https://levelmoneydb.firebaseio.com/hcadrecs.json',hcadRecords)
     this.http.put('https://traveltrackingdb.firebaseio.com/hcadrecs.json',hcadRecords)
     .subscribe(response => {
        console.log(response);

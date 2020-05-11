@@ -3,9 +3,11 @@ import {MyApiService} from '../my-api.service';
 import {HCADRecord} from '../shared/HCADRecord';
 import { Observable } from 'rxjs';
 
-import {map,tap, take, exhaustMap} from 'rxjs/operators';
-import { HttpHeaders } from '@angular/common/http';
-import {HttpClient, HttpParams} from '@angular/common/http';
+
+import { Store } from '@ngrx/store';
+import { ILogin } from '../ILogin.model';
+import { AppState } from './../app.state';
+import { retry } from 'rxjs/operators';
 
 @Component({
   selector: 'app-migrate-data',
@@ -16,22 +18,35 @@ export class MigrateDataComponent implements OnInit {
 
   private hcadRecords:HCADRecord[] = [];
   hcadRecords$ = new Observable<HCADRecord[]>()
+  loginCredentials$: Observable<ILogin[]>;
 
-  constructor(private mySvcApi: MyApiService) { }
+  constructor(private mySvcApi: MyApiService,
+              private store: Store<AppState>) {   }
 
   ngOnInit() {
-
+    this.loginCredentials$ = this.store.select(state => state.login);
   }
 
   fetchHCADRecords()
   {
-    this.hcadRecords$ = this.mySvcApi.fetchHCADRecords();
+    this.loginCredentials$.subscribe(loginEnvironment => {
+         console.log(loginEnvironment[0].environment);
 
-    this.hcadRecords$.subscribe (
-      myHcadRecords=> {
-        this.hcadRecords = myHcadRecords;
-      }
-    )
+         this.hcadRecords$ =
+                    loginEnvironment.length == 1 ? this.mySvcApi.fetchHCADRecordsRefactored(loginEnvironment[0].environment)
+                    : this.mySvcApi.fetchHCADRecordsRefactored(loginEnvironment[loginEnvironment.length -1].environment);
+
+         if(!this.hcadRecords$)
+         {
+           return;
+         }
+         this.hcadRecords$.subscribe (
+           myHcadRecords=> {
+             this.hcadRecords = myHcadRecords;
+           }
+         )
+       }
+    );
 
   }
 

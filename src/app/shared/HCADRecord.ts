@@ -29,7 +29,7 @@ export class HCADRecord {
   public  NOTE:string;
 
   constructor(
-       AcctNumb:string,
+      AcctNumb:string,
       LandSft:number ,
       BldgSqft:number ,
       Kmap:string,

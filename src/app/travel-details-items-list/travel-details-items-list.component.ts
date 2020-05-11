@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MyApiService} from '../my-api.service';
 import {Router} from '@angular/router';
 import {ITravelDetail} from '../ITravelDetail';
+import {TravelDetails} from '../TravelDetails';
 
 //redux for login credentials
 import { Store } from '@ngrx/store';
@@ -19,7 +20,8 @@ export class TravelDetailsItemsListComponent implements OnInit {
 
   travelDetails: ITravelDetail[] = [];
   selectedTravelItem;
-  travelDetails2: any;
+
+  travelDetails2$ = new Observable<TravelDetails[]>();
 
   loginCredentials: any = []
   loginCredentials$: Observable<ILogin[]>;
@@ -56,7 +58,6 @@ export class TravelDetailsItemsListComponent implements OnInit {
       console.log(this._travelDetailState[this._travelDetailState.length-1].TravelerName + '  ' + (this._travelDetailState[this._travelDetailState.length-1].HotelName));
     }
 
-
     this.fetchTravelDetailsFromService_Observable();
   }
 
@@ -65,28 +66,10 @@ export class TravelDetailsItemsListComponent implements OnInit {
   {
 
     console.log("Environment in Travel Details items-list.component " + this.loginCredentials[this.loginCredentials.length-1].environment);
-    this.travelDetails2 = this.mySvcApi.getTravelDetailItemsObservable(this.loginCredentials[this.loginCredentials.length-1].environment);
+    this.travelDetails2$ = this.mySvcApi.callTravelDetailsViaObservable(this.loginCredentials[this.loginCredentials.length-1].environment);
 
   }
 
-  fetchTravelItemsFromService() {
-    try {
-
-
-      this.mySvcApi.getTravelDetailItems(this.loginCredentials[0].environment)
-       .subscribe((response : ITravelDetail[])=>{
-          this.travelDetails = response;
-       },
-       error => {
-        console.log(error, "error");
-         alert("Error fetching detail items" + error.message)
-        }
-       );
-
-    } catch (e) {
-      console.log(e);
-    }
-  }
 
   public selectTravelItem(travelItem){
     this.selectedTravelItem = travelItem;
@@ -95,7 +78,6 @@ export class TravelDetailsItemsListComponent implements OnInit {
 
   public selectTravelItemToEdit(travelItem){
     this.pushSelectedTDItemToObservable(travelItem);
-    //this.router.navigate(['/EditTravelDetailForm']); //using one form now
     this.router.navigate(['/TravelDetails']);
 
   }
@@ -119,7 +101,6 @@ export class TravelDetailsItemsListComponent implements OnInit {
   showLoginCredentials()
   {
     this.loginCredentials = this.mySvcApi.getLoginCredentials();
-    //alert("Environent is: " + this.loginCredentials.environment)
   }
 
 }
