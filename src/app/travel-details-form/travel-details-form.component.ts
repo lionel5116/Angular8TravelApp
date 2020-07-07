@@ -291,7 +291,8 @@ export class TravelDetailsFormComponent implements OnInit {
 
      if(this.travelDetails.id > 0 && this.travelDetails.id !== 'undefined')
      {
-        if(this.travelDetails.TravelerName != "" &&
+      console.log(this.travelDetails);
+       if(this.travelDetails.TravelerName != "" &&
         this.travelDetails.CountryCode != "" &&
         this.travelDetails.City != "" &&
         this.travelDetails.TravelDate != "" &&
@@ -300,12 +301,12 @@ export class TravelDetailsFormComponent implements OnInit {
         this.travelDetails.TicketNumber != "" &&
         this.travelDetails.BookingCode != "" &&
         this.travelDetails.TotalCostOfTrip != "" &&
-        this.travelDetails.GirlCost != "" &&
+        this.travelDetails.GirlCost != "0" &&
         this.travelDetails.TripRating != "" &&
         this.travelDetails.Notes != "" &&
-        this.travelDetails.FlightCost  != "" &&
-        this.travelDetails.HotelCost != "" &&
-        this.travelDetails.Status != "" )
+        this.travelDetails.FlightCost  != "0" &&
+        this.travelDetails.HotelCost != "0" &&
+        this.travelDetails.Status != "0" )
         {
 
           console.log(this.travelDetails);
